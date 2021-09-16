@@ -29,13 +29,18 @@ public class VideoFile {
     }
 
     public Integer getTotalDurationInSeconds(){
-//        System.out.println(this.path.toFile().getAbsolutePath());
-        String[] tokens = this.duration.split(",")[0].split(" ");
-        String[] durationParts = tokens[tokens.length-1].split("\\.")[0].split(":");
-        int hours = Integer.parseInt(durationParts[0]);
-        int minutes = Integer.parseInt(durationParts[1]);
-        int seconds = Integer.parseInt(durationParts[2]);
-        return (hours * 60 * 60) + (minutes * 60) + seconds;
+        try{
+            String[] tokens = this.duration.split(",")[0].split(" ");
+            String[] durationParts = tokens[tokens.length-1].split("\\.")[0].split(":");
+            int hours = Integer.parseInt(durationParts[0]);
+            int minutes = Integer.parseInt(durationParts[1]);
+            int seconds = Integer.parseInt(durationParts[2]);
+            return (hours * 60 * 60) + (minutes * 60) + seconds;
+        }catch(Exception e){
+            System.out.println(this.path.toFile().getAbsolutePath());
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override

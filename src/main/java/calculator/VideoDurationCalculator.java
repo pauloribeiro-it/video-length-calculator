@@ -26,7 +26,7 @@ public class VideoDurationCalculator {
                 videoFiles.add(videoFile);
 //                System.out.println(videoFile);
             });
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return videoFiles.stream().flatMapToInt(v -> IntStream.of(v.getTotalDurationInSeconds())).sum();
